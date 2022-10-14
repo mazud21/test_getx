@@ -1,5 +1,6 @@
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:test_getx/view/darktheme.dart';
 import 'package:test_getx/view/login.dart';
 import 'package:test_getx/view/user.dart';
 
@@ -17,7 +18,10 @@ class Routes{
     GetPage(
       name: '/login',
       page: () => Login(),
-      binding: DataBinding2(),
+    ),
+    GetPage(
+      name: '/darkThemePage',
+      page: () => DarkThemePage(),
     ),
   ];
 }
