@@ -30,6 +30,10 @@ dependencies:
   cupertino_icons: ^1.0.0
   get: any
   shared_preferences: any
+  local_auth: ^0.6.3+4
+  workmanager: ^0.3.0
+  provider: any
+  http: any
 
 dev_dependencies:
   flutter_test:

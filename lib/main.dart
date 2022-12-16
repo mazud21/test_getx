@@ -1,42 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:test_getx/route/route.dart';
-import 'package:get/get.dart';
-import 'package:test_getx/view/darktheme.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:provider/provider.dart';
+import 'package:test_getx/loadData.dart';
+import 'package:test_getx/passenger.dart';
 
 void main() {
+
   runApp(MyApp());
 }
 
-ThemeData _darkTheme = ThemeData(
-    accentColor: Colors.red,
-    brightness: Brightness.dark,
-    primaryColor: Colors.amber,
-    buttonTheme: ButtonThemeData(
-      buttonColor: Colors.amber,
-      disabledColor: Colors.grey,
-    ));
-
-ThemeData _lightTheme = ThemeData(
-    accentColor: Colors.pink,
-    brightness: Brightness.light,
-    primaryColor: Colors.blue,
-    buttonTheme: ButtonThemeData(
-      buttonColor: Colors.blue,
-      disabledColor: Colors.grey,
-    ));
-
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-        //initialRoute: '/darkThemePage',
-        //getPages: Routes.routes,
-      theme: _lightTheme,
-      darkTheme: _darkTheme,
-      themeMode: ThemeMode.system,
-      debugShowCheckedModeBanner: false,
-      home: DarkThemePage(),
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => LoadData(),
+        ),
+      ],
+      child: GetMaterialApp(
+        home: Passenger(),
+        theme: new ThemeData(
+          primarySwatch: Colors.red,
+          brightness: Brightness.light,
+        ),
+        /*darkTheme: ThemeData(
+          brightness: Brightness.dark,
+        ),*/
+        //themeMode: ThemeMode.system,
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }
